@@ -1,1 +1,0 @@
-C:/script/AHK/Working/detect_context (2).ahk
