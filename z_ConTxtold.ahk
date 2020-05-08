@@ -12,8 +12,9 @@ Global Opacity
 Global Restore_Previous_Versions_Entry
 Global Open_Containing_Entry
 Global Paste_MP3_Entry
-Global EVENT_SYSTEM_MENUPOPUPSTART := 0x0006
-;II=1;TT=1;Opacity=17
+;II=1
+;TT=1
+;Opacity=17
 bgrColor := "220040"
 hWnd2:=
 Paste_MP3_Command=%appdata%\\z_WMP\z_WMP_Paste.exe
@@ -51,6 +52,8 @@ Menu, submenu1, Check, Paste_MP3,
 Menu, Tray, Add, Settings, :submenu1
 Menu, Tray, Standard
 ;==============================================================================
+
+global EVENT_SYSTEM_MENUPOPUPSTART := 0x0006
 
 OnExit("SaveSettingstoINI")
 
@@ -233,16 +236,14 @@ if II=1
 global II=7
 RunWait, %comspec% /c "regsvr32 /u ContextIcons.dll"
 Menu, submenu1, UnCheck, Toggle Icon Injector DLL
-return
 }
 if II=7
 {
 global II=1
 RunWait, %comspec% /c "regsvr32 ContextIcons.dll"
 Menu, submenu1, Check, Toggle Icon Injector DLL
-return
 }
-
+Return
 
 TT:
 if TT=1
@@ -262,7 +263,7 @@ return
 gosub TT
 return
 
-LoadSettingsFromINI:         									;=====Issue with first run not choosing defaults===============
+LoadSettingsFromINI:
 iniread, Opacity, z_ConTxt.ini , Opacity, Opacity, 17
 iniread, TT, z_ConTxt.ini , TransToggle, TT, 1
 iniread, II, z_ConTxt.ini , IconInjector, II, 7
@@ -279,5 +280,5 @@ SaveSettingstoINI()
 	iniWrite, %Restore_Previous_Versions_Entry% , z_ConTxt.ini , Restore_Previous_Versions_Entry, Restore_Previous_Versions_Entry
 	iniWrite, %Open_Containing_Entry% , z_ConTxt.ini , Open_Containing_Entry, Open_Containing_Entry
 	iniWrite, %Paste_MP3_Entry% , z_ConTxt.ini , Paste_MP3_Entry , Paste_MP3_Entry
-	Return
+Return
 	}

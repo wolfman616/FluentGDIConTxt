@@ -1,3 +1,3 @@
-mkdir c:\icon\24
-move 24\*.* c:\icon\24
+mkdir c:\icon\20
+move 20\*.* c:\icon\20
 pause
